@@ -1,0 +1,24 @@
+image: mingc/android-build-box:latest
+
+pipelines:
+  default:
+    - step:
+        services:
+          - docker
+        caches:
+          - docker
+          - gradle
+          - android-sdk
+          - androidavd
+          - gradlewrapper
+        script:
+          - mkdir "$ANDROID_HOME/licenses" || true
+          - echo -e "\n24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license"
+          - chmod +x gradlew
+          - ./gradlew assembleDebug
+          - curl -X POST --user "$BB_AUTH_STRING" "https://api.bitbucket.org/2.0/repositories/$BITBUCKET_REPO_OWNER/$BITBUCKET_REPO_SLUG/downloads" --form files=@"app/build/outputs/apk/debug/app-debug.apk"
+definitions:
+  caches:
+    android-sdk: /opt/atlassian/pipelines/agent/build/android-sdk
+    gradlewrapper: ~/.gradle/wrapper
+    androidavd: $ANDROID_HOME/.android/avd

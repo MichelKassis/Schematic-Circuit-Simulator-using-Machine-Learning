@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="image_select_options">
+        <item>Take a photo</item>
+        <item>Choose from gallery</item>
+    </string-array>
+    <string-array name="options_options">
+        <item>Clean storage</item>
+        <item>Clean cache</item>
+    </string-array>
+    <string-array name="element_type_options">
+        <item>Resistor</item>
+        <item>Capacitor</item>
+        <item>Inductor</item>
+        <item>Voltage Source</item>
+        <item>Current Source</item>
+    </string-array>
+    <string-array name="analysis_options">
+        <item>AC</item>
+        <item>DC</item>
+    </string-array>
+</resources>
